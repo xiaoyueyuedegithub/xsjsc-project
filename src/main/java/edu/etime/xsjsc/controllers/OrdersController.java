@@ -65,7 +65,7 @@ public class OrdersController {
     }
 
     /**
-     * 修改订单
+     * 删除订单
      *
      * @param id
      * @return
@@ -77,5 +77,13 @@ public class OrdersController {
         map.put("status","200");
         map.put("massage","delete orders succeed");
         return map;
+    }
+
+    /*我的订单
+    **/
+    @GetMapping("/my")
+    public List<Orders> my(String openid){
+        List<Orders> list =ordersService.selectByOpenid(openid);
+        return list;
     }
 }

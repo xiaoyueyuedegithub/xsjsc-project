@@ -9,6 +9,10 @@ public interface OrdersMapper {
     **/
     List<Orders> selectOrdersList();
 
+    /*根据用户id查询订单
+    **/
+     List<Orders> selectByOpenid(String openid);
+
     int deleteByPrimaryKey(String id);
 
     int insert(Orders record);

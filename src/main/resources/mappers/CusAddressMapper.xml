@@ -19,7 +19,7 @@
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <!-- 查询收货地址列表 -->
-  <select id="selectAddress" resultMap="BaseResultMap" parameterType="edu.etime.xsjsc.pojo.CusAddress" >
+  <select id="selectAddress" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     id, openid, address, isdefault, phone, title
     from cusaddress
@@ -29,6 +29,14 @@
     	</if>
     </where>
   </select>
+
+  <!-- 查询订单列表 -->
+  <select id="selectCusAddressList" resultMap="BaseResultMap">
+    select
+    id, openid, address, isdefault, phone, title
+    from cusaddress
+  </select>
+
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from cusaddress

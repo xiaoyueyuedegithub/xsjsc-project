@@ -41,6 +41,13 @@
     </where>
   </select>
 
+<!--  根据用户id查询订单-->
+  <select id="selectByOpenid" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from orders
+    where openid = #{openid,jdbcType=VARCHAR}
+  </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from orders

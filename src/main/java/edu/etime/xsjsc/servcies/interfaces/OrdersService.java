@@ -22,6 +22,13 @@ public interface OrdersService {
      * @return
      */
     List<Orders> selectOrdersList();
+
+    /**
+     * 根据用户id查询订单列表
+     * @return
+     */
+    List<Orders> selectByOpenid(String openid);
+
     /**
      * 根据商品id查询一条商品的详细信息
      * @param pid

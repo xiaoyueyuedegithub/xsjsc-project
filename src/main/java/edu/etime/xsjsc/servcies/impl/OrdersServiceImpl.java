@@ -28,6 +28,11 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     @Override
+    public List<Orders> selectByOpenid(String openid) {
+        return ordersMapper.selectByOpenid(openid);
+    }
+
+    @Override
     public Orders selectOrdersById(String pid) {
         return ordersMapper.selectByPrimaryKey(pid);
     }
