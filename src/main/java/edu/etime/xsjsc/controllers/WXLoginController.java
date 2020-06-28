@@ -20,9 +20,6 @@ import edu.etime.xsjsc.servcies.interfaces.WXDataService;
 
 /**
  * 微信授权登录controller
- * 
- * @author 张旺
- *
  */
 @Controller
 @RequestMapping("/wxlogin")
@@ -44,6 +41,8 @@ public class WXLoginController {
 	@RequestMapping("/login")
 	@ResponseBody
 	public String login(String code, String nickname) {
+		System.out.println("---------" + code + "----------");
+		System.out.println("---------" + nickname + "----------");
 		String openid = getopenid(code);
 		//判断数据库中是否有openid存在
 		Customer cus = service.selectCustomerById(openid);
@@ -69,7 +68,7 @@ public class WXLoginController {
 	 * @return
 	 */
 	private String getopenid(String code) {
-		String WX_URL = "https://api.weixin.qq.com/sns/jscode2session?appid=wx37c74496b464fa6a&secret=93c313f2aff59eac6a9e393b9bf6dbed&js_code="
+		String WX_URL = "https://api.weixin.qq.com/sns/jscode2session?appid=wxe8f61c6b27cd38a9&secret=cb241a3d09e9ccebaf8c63919babb9e7&js_code="
 				+ code + "&grant_type=authorization_code";
 		String rtnvalue = GET(WX_URL);//获取到的是一个json字符串。
 		//解析json字符串，得到openid
@@ -88,6 +87,7 @@ public class WXLoginController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println("---------" + openid + "----------");
 		return openid;
 	}
 
