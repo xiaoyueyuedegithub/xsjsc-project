@@ -27,6 +27,28 @@
     from orders
     where id = #{id,jdbcType=VARCHAR}
   </select>
+
+  <!-- 查询订单列表 -->
+  <select id="selectOrdersList" resultMap="BaseResultMap">
+    select
+    id, openid, productid, productname, title, price, number, totle, ispay, invoice,
+    receive, state, address, addrid
+    from orders
+    <where>
+      <if test="state!=null and state!=-1">
+        and state=#{state}
+      </if>
+    </where>
+  </select>
+
+<!--  根据用户id查询订单-->
+  <select id="selectByOpenid" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from orders
+    where openid = #{openid,jdbcType=VARCHAR}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from orders
     where id = #{id,jdbcType=VARCHAR}

@@ -11,7 +11,11 @@ public interface CusAddressMapper {
 
     int insertSelective(CusAddress record);
 
+    List<CusAddress> selectAddress(String openid);
+
     CusAddress selectByPrimaryKey(String id);
+
+    List<CusAddress> selectCusAddressList();
 
     int updateByPrimaryKeySelective(CusAddress record);
 
