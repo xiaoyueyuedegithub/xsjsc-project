@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Main-Class: 
+Class-Path: jackson-annotations-2.9.6.jar spring-web-5.0.8.RELEASE.jar m
+ ysql-connector-java-5.1.46.jar spring-aop-5.0.8.RELEASE.jar spring-tx-5
+ .0.8.RELEASE.jar spring-beans-5.0.8.RELEASE.jar commons-io-2.2.jar mcha
+ nge-commons-java-0.2.11.jar spring-aspects-5.0.8.RELEASE.jar spring-jcl
+ -5.0.8.RELEASE.jar spring-core-5.0.8.RELEASE.jar jackson-databind-2.9.6
+ .jar aopalliance-1.0.jar aspectjweaver-1.9.2.jar spring-webmvc-5.0.8.RE
+ LEASE.jar commons-fileupload-1.3.3.jar spring-expression-5.0.8.RELEASE.
+ jar c3p0-0.9.5.2.jar jackson-core-2.9.6.jar spring-context-5.0.8.RELEAS
+ E.jar mybatis-3.4.6.jar spring-jdbc-5.0.8.RELEASE.jar fastdfs-client-ja
+ va-1.27.0.0.jar jstl-1.2.jar mybatis-spring-1.3.1.jar
+

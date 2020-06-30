@@ -2,7 +2,7 @@ package edu.etime.xsjsc.servcies.interfaces;
 
 
 
-/*订单管理接口
+/**订单管理接口
 **/
 
 import edu.etime.xsjsc.pojo.Orders;
