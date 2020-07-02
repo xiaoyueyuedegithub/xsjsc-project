@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -38,7 +39,7 @@ public class WXLoginController {
 	 *            用户的昵称
 	 * @return openid。如果注册不成功，返回空字符串
 	 */
-	@RequestMapping("/login")
+	@GetMapping("/login")
 	@ResponseBody
 	public String login(String code, String nickname) {
 		System.out.println("---------" + code + "----------");

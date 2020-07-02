@@ -3,6 +3,7 @@ package edu.etime.xsjsc.dao;
 import java.util.List;
 
 import edu.etime.xsjsc.pojo.CusAddress;
+import org.apache.ibatis.annotations.Param;
 
 public interface CusAddressMapper {
     int deleteByPrimaryKey(String id);
@@ -11,7 +12,7 @@ public interface CusAddressMapper {
 
     int insertSelective(CusAddress record);
 
-    List<CusAddress> selectAddress(String openid);
+    List<CusAddress> selectAddress(@Param("openid") String openid);
 
     CusAddress selectByPrimaryKey(String id);
 

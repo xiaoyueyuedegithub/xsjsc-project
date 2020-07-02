@@ -46,10 +46,9 @@ public class SwaggerConfig {
      */
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Spring Boot中使用Swagger2构建RESTful APIs")
+                .title("新饰纪商城 APIs")
                 .description("更多请关注http://www.baidu.com")
                 .termsOfServiceUrl("http://www.baidu.com")
-                .contact("sunf")
                 .version("1.0")
                 .build();
     }
