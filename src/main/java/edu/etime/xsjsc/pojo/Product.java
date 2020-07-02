@@ -1,7 +1,10 @@
 package edu.etime.xsjsc.pojo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.Date;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)  //非空才会序列化
 public class Product {
     private String id;
 
