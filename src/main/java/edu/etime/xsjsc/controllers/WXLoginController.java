@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -17,6 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import edu.etime.xsjsc.pojo.Customer;
 import edu.etime.xsjsc.servcies.interfaces.WXDataService;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 微信授权登录controller
@@ -24,7 +26,7 @@ import edu.etime.xsjsc.servcies.interfaces.WXDataService;
  * @author 张旺
  *
  */
-@Controller
+@RestController
 @RequestMapping("/wxlogin")
 public class WXLoginController {
 
@@ -41,7 +43,7 @@ public class WXLoginController {
 	 *            用户的昵称
 	 * @return openid。如果注册不成功，返回空字符串
 	 */
-	@RequestMapping("/login")
+	@GetMapping("/login")
 	@ResponseBody
 	public String login(String code, String nickname) {
 		String openid = getopenid(code);

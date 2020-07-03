@@ -18,6 +18,11 @@ public class OrdersServiceImpl implements OrdersService {
     OrdersMapper ordersMapper;
 
     @Override
+    public int insert(Orders orders) {
+        return ordersMapper.insert(orders);
+    }
+
+    @Override
     public int insertOrders(Orders orders) {
         return ordersMapper.insertSelective(orders);
     }
@@ -29,8 +34,11 @@ public class OrdersServiceImpl implements OrdersService {
 
     @Override
     public List<Orders> selectByOpenid(String openid) {
-        return ordersMapper.selectByOpenid(openid);
+        return ordersMapper.selectByopenid(openid);
     }
+
+
+
 
     @Override
     public Orders selectOrdersById(String pid) {
@@ -41,6 +49,7 @@ public class OrdersServiceImpl implements OrdersService {
     public int updateOrders(Orders orders) {
         return ordersMapper.updateByPrimaryKeySelective(orders);
     }
+
 
     @Override
     public int deleteOrders(String id) {

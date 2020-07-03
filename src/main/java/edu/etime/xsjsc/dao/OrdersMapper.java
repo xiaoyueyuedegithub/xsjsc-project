@@ -9,13 +9,14 @@ public interface OrdersMapper {
     **/
     List<Orders> selectOrdersList();
 
-    /*根据用户id查询订单
-    **/
-     List<Orders> selectByOpenid(String openid);
+
+     /*根据用户id状态搜索订单**/
+     List<Orders> selectByopenid(String openid);
 
     int deleteByPrimaryKey(String id);
 
-    int insert(Orders record);
+    /*根据商品id插入订单**/
+    int insert(Orders orders);
 
     int insertSelective(Orders record);
 
