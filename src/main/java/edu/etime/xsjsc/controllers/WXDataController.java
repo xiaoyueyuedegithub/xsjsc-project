@@ -33,7 +33,8 @@ public class WXDataController {
 	 * @param cmd
 	 * @return
 	 */
-	@PostMapping("/index/{cmd}")
+
+	@GetMapping("/index/{cmd}")
 	@ResponseBody
 	public List<Product> selectIndexProduct(@PathVariable("cmd")String cmd){
 		Product p = new Product();
@@ -58,7 +59,7 @@ public class WXDataController {
 	public List<GoodsTypeProduct> selectGoodsTypeProduct(){
 		return service.selectGoodsTypeProduct();
 	}
-	
+
 	/**
 	 * 查询商品的详情
 	 * @param id

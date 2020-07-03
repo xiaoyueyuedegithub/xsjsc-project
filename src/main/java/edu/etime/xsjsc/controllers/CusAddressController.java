@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /*地址管理Controller层
  **/
@@ -25,6 +26,7 @@ public class CusAddressController {
      */
     @PostMapping("/add")
     public Map<String, String> add(@RequestBody(required=false)CusAddress cusAddress){
+        cusAddress.setId(UUID.randomUUID().toString());
         cusAddressService.insertCusAddress(cusAddress);
         Map<String,String> map = new HashMap<>();
         map.put("status","200");
@@ -41,6 +43,12 @@ public class CusAddressController {
     @GetMapping("/list")
     public List<CusAddress> list(){
         List<CusAddress> list = cusAddressService.selectCusAddressList();
+        return list;
+    }
+
+    @GetMapping("/list/{openid}")
+    public List<CusAddress> getAddressesByOpenid(@PathVariable("openid") String openid) {
+        List<CusAddress> list = cusAddressService.selectAddress(openid);
         return list;
     }
 
