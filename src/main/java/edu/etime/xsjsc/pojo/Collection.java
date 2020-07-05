@@ -5,6 +5,16 @@ import java.util.Date;
 public class Collection {
     private String id;
 
+    @Override
+    public String toString() {
+        return "Collection{" +
+                "id='" + id + '\'' +
+                ", productid='" + productid + '\'' +
+                ", openid='" + openid + '\'' +
+                ", collecttime='" + collecttime + '\'' +
+                '}';
+    }
+
     private String productid;
 
     private String openid;

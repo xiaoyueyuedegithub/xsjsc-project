@@ -39,7 +39,25 @@ public class CollectionServiceImpl implements CollectionService {
     }
 
     @Override
+    public Integer deleteCollectionByProductid(String productid, String openid) {
+        Collection collection= new Collection();
+        collection.setOpenid(openid);
+        collection.setProductid(productid);
+        Collection collectionFound = collectionMapper.selectByProductid(collection);
+        if(collectionFound == null) {
+            return 0;
+        }
+        return collectionMapper.deleteByPrimaryKey(collectionFound.getId());
+    }
+
+    @Override
     public Integer insertCollection(Collection collection) {
         return collectionMapper.insertSelective(collection);
+    }
+
+    @Override
+    public Collection findCollectionByProductid(Collection collection) {
+        Collection collection1 = collectionMapper.selectByProductid(collection);
+        return collection1;
     }
 }

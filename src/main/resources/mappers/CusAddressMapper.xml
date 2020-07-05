@@ -18,7 +18,7 @@
     from cusaddress
     where id = #{id,jdbcType=VARCHAR}
   </select>
-  <!-- 查询收货地址列表 -->
+  <!-- 根据openid查询收货地址列表 -->
   <select id="selectAddress" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     id, openid, address, isdefault, phone, title
@@ -30,7 +30,7 @@
     </where>
   </select>
 
-  <!-- 查询订单列表 -->
+  <!-- 查询所有地址列表 -->
   <select id="selectCusAddressList" resultMap="BaseResultMap">
     select
     id, openid, address, isdefault, phone, title

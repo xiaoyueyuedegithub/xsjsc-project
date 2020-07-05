@@ -18,4 +18,6 @@ public interface CollectionMapper {
     int updateByPrimaryKeySelective(Collection record);
 
     int updateByPrimaryKey(Collection record);
+
+    Collection selectByProductid(Collection collection);
 }

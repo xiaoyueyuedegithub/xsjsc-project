@@ -21,9 +21,24 @@ public interface CollectionService {
     Integer deleteCollectionById(String id);
 
     /**
+     * 根据productid，openid删除收藏
+     * @param productid
+     * @param openid
+     * @return
+     */
+    Integer deleteCollectionByProductid(String productid, String openid);
+    /**
      * 插入收藏
      * @param collection
      * @return
      */
     Integer insertCollection(Collection collection);
+
+    /**
+     * 判断商品是否收藏
+     * @param collection
+     * @return
+     */
+    Collection findCollectionByProductid(Collection collection);
+
 }
