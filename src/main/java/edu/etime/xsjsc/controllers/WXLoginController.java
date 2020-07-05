@@ -18,11 +18,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import edu.etime.xsjsc.pojo.Customer;
 import edu.etime.xsjsc.servcies.interfaces.WXDataService;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 微信授权登录controller
  */
-@Controller
+@RestController
 @RequestMapping("/wxlogin")
 public class WXLoginController {
 

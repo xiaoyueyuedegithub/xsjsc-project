@@ -11,6 +11,9 @@ import java.util.List;
 
 public interface OrdersService {
 
+    /*根据商品id增加订单**/
+    int insert(Orders orders);
+
     /**
      * 增加订单
      * @param orders
@@ -28,7 +31,6 @@ public interface OrdersService {
      * @return
      */
     List<Orders> selectByOpenid(String openid);
-
     /**
      * 根据商品id查询一条商品的详细信息
      * @param pid
@@ -42,6 +44,7 @@ public interface OrdersService {
      * @return
      */
     int updateOrders(Orders orders);
+
 
     /**
      * 删除订单信息

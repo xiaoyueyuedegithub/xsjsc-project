@@ -18,7 +18,7 @@ import edu.etime.xsjsc.servcies.interfaces.WXDataService;
  * @author 张旺
  *
  */
-@Controller
+@RestController
 @RequestMapping("/wx")
 public class WXDataController {
 
@@ -33,6 +33,7 @@ public class WXDataController {
 	 * @param cmd
 	 * @return
 	 */
+
 	@GetMapping("/index/{cmd}")
 	@ResponseBody
 	public List<Product> selectIndexProduct(@PathVariable("cmd")String cmd){
@@ -86,7 +87,7 @@ public class WXDataController {
 	 * @param address
 	 * @return
 	 */
-	@RequestMapping(value="/address/add",method=RequestMethod.POST)
+	@PostMapping(value="/address/add")
 	@ResponseBody
 	public int insertCusAddress(@RequestBody CusAddress address){
 		address.setId(UUID.randomUUID().toString());

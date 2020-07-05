@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import edu.etime.xsjsc.common.FastDFSClient;
@@ -37,7 +35,7 @@ public class ProductController {
 	 * 进入到增加页面
 	 * @return
 	 */
-	@RequestMapping("/toadd")
+	@PostMapping("/toadd")
 	public String toadd(Model model){
 		//查询出所有可用的商品类型列表
 		GoodsType type = new GoodsType();
@@ -51,7 +49,7 @@ public class ProductController {
 	 * @param p
 	 * @return
 	 */
-	@RequestMapping("/add")
+	@PostMapping("/add")
 	public String add(Product p,@RequestParam("file")MultipartFile file,Model model){
 		//1、判断是否有文件存储，如果有，则将文件保存到fastdfs中
 		if(file!=null && !file.isEmpty()){
@@ -88,7 +86,7 @@ public class ProductController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/list")
+	@GetMapping("/list")
 	public String list(Product p,Model model){
 		//1、初始化商品类型下拉列表
 		GoodsType type = new GoodsType();
@@ -106,7 +104,7 @@ public class ProductController {
 	 * 进入到商品图片管理页面的方法
 	 * @return
 	 */
-	@RequestMapping("/imgs/{pid}")
+	@GetMapping("/imgs/{pid}")
 	public String initImg(@PathVariable("pid")String pid,Model model){
 		//1、根据商品id查询出商品的详细信息（显示）
 		Product p = service.selectProductById(pid);
@@ -127,7 +125,7 @@ public class ProductController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/updateimg")
+	@PutMapping("/updateimg")
 	public String updateimg(ProductImgs img,@RequestParam("file")MultipartFile file,Model model){
 		//上传图片
 		if(file!=null && !file.isEmpty()){
@@ -163,7 +161,7 @@ public class ProductController {
 	 * 删除商品图片
 	 * @return
 	 */
-	@RequestMapping("/delimg/{id}/{pid}")
+	@DeleteMapping("/delimg/{id}/{pid}")
 	public String delimg(@PathVariable("id")String id,@PathVariable("pid")String pid){
 		service.deleteImg(id);
 		return "redirect:/product/imgs/"+pid;
