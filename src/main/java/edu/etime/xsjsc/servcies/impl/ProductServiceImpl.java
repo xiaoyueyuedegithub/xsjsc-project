@@ -39,6 +39,11 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
+	public Product selectByPrimaryKey(String id) {
+		return mapper.selectByPrimaryKey(id);
+	}
+
+	@Override
 	public List<ProductImgs> selectImgById(String pid) {
 		return imgmapper.selectByPid(pid);
 	}
