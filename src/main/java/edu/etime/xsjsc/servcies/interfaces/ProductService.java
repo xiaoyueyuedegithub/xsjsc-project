@@ -24,6 +24,9 @@ public interface ProductService {
 	 * @return
 	 */
 	List<Product> selectProductList(Product p);
+
+    /*根据主键查询商品**/
+	Product selectByPrimaryKey(String id);
 	/**
 	 * 根据商品id查询一条商品的详细信息
 	 * @param pid
