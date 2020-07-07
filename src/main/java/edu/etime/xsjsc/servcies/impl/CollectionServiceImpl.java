@@ -13,7 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CollectionServiceImpl implements CollectionService {
+public class
+CollectionServiceImpl implements CollectionService {
     @Autowired
     CollectionMapper collectionMapper;
     @Autowired
