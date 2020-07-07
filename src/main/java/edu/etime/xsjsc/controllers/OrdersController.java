@@ -3,13 +3,13 @@ package edu.etime.xsjsc.controllers;
 
 
 import edu.etime.xsjsc.dao.ProductMapper;
+import edu.etime.xsjsc.dto.CollectionProduct;
+import edu.etime.xsjsc.dto.OrderProduct;
 import edu.etime.xsjsc.pojo.Orders;
-import edu.etime.xsjsc.pojo.Product;
 import edu.etime.xsjsc.servcies.interfaces.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,19 +39,6 @@ public class OrdersController {
         return map;
     }
 
-
-    /**
-     * 查询订单列表
-     *
-     * @return
-     */
-    @GetMapping("/list")
-    public List<Orders> list(){
-        List<Orders> list = ordersService.selectOrdersList();
-        return list;
-    }
-
-
     /**
      * 删除订单
      *
@@ -67,68 +54,34 @@ public class OrdersController {
         return map;
     }
 
-    /*查询待付款订单
-    **/
-    @GetMapping("/mylist2")
-    public List<Orders> mylist2(String openid){
-        //存放未付款订单
-        List<Orders> list2 = new ArrayList<Orders>();
-        List<Orders> list =ordersService.selectByOpenid(openid);
-        for(int i=0;i<list.size();i++){
-            if (list.get(i).getState()==1){
-                list2.add(list.get(i));
-            }
-        }
-        return list2;
+
+    //列出待付款订单
+    @PutMapping("/listdaifukuan")
+    public List<OrderProduct> listdaifukuan(@RequestBody(required=false) Orders orders) {
+        return ordersService.selectOrders1(orders);
     }
 
-
-    /*返回待付款商品详情**/
-    @PostMapping("listproduct1")
-    List<Product> listprouct1(@RequestBody(required=false) Orders orders){
-        //存放待付款的产品信息
-        List<Product> p1 = new ArrayList<Product>();
-        List<Orders> list =ordersService.selectByOpenid(orders.getOpenid());
-        for(int i=0;i<list.size();i++) {
-            if (list.get(i).getState() == 1) {
-                p1.add(productMapper.selectByPrimaryKey(orders.getProductid()));
-            }
-        }
-        return p1;
+    //列出待发货订单
+    @PutMapping("/listdaifahuo")
+    public List<OrderProduct> listdaifahuo(@RequestBody(required=false) Orders orders) {
+        return ordersService.selectOrders2(orders);
     }
 
-
-    /*查询待发货订单
-     **/
-    @GetMapping("/mylist3")
-    public List<Orders> mylist3(String openid){
-        //存放未发货订单
-        List<Orders> list3 =new ArrayList<Orders>();
-        List<Orders> list =ordersService.selectByOpenid(openid);
-        for(int i=0;i<list.size();i++){
-            if (list.get(i).getState()==2){
-                list3.add(list.get(i));
-            }
-        }
-        return list3;
+    //列出待收货订单
+    @PutMapping("/listdaishouhuo")
+    public List<OrderProduct> listdaishouhuo(@RequestBody(required=false) Orders orders) {
+        return ordersService.selectOrders3(orders);
     }
 
-    /*返回待发货商品详情**/
-    @PostMapping("listproduct2")
-    List<Product> listprouct2(@RequestBody(required=false) Orders orders){
-        //存放待发货的产品信息
-        List<Product> p2 = new ArrayList<Product>();
-        List<Orders> list =ordersService.selectByOpenid(orders.getOpenid());
-        for(int i=0;i<list.size();i++) {
-            if (list.get(i).getState() == 2) {
-                p2.add(productMapper.selectByPrimaryKey(orders.getProductid()));
-            }
-        }
-        return p2;
+    //列出历史订单
+    @PutMapping("/listlishi")
+    public List<OrderProduct> listlishi(@RequestBody(required=false) Orders orders) {
+        return ordersService.selectOrders4(orders);
     }
+
 
     /*用户退款修改state为0**/
-    @PutMapping("/tuikuan")
+    @GetMapping("/tuikuan")
     public Map<String, String> tuikuan(@RequestParam(value="id",required = false) String id){
         Orders o = ordersService.selectOrdersById(id);
         o.setState(0);
@@ -139,38 +92,11 @@ public class OrdersController {
         return map;
     }
 
-    /*查询待收货订单
-     **/
-    @GetMapping("/mylist4")
-    public List<Orders> mylist4(String openid){
-        //存放待收货订单
-        List<Orders> list4 = new ArrayList<Orders>();
-        List<Orders> list =ordersService.selectByOpenid(openid);
-        for(int i=0;i<list.size();i++){
-            if (list.get(i).getState()==3){
-                list4.add(list.get(i));
-            }
-        }
-        return list4;
-    }
 
-    /*返回待收货商品详情**/
-    @PostMapping("listproduct3")
-    List<Product> listprouc3(@RequestBody(required=false) Orders orders){
-        //存放待收货的产品信息
-        List<Product> p3 = new ArrayList<Product>();
-        List<Orders> list =ordersService.selectByOpenid(orders.getOpenid());
-        for(int i=0;i<list.size();i++) {
-            if (list.get(i).getState() == 3) {
-                p3.add(productMapper.selectByPrimaryKey(orders.getProductid()));
-            }
-        }
-        return p3;
-    }
 
 
     /*取消订单修改state为0**/
-    @PutMapping("/cancelorders")
+    @GetMapping("/cancelorders")
     public Map<String, String> canceorders(@RequestParam(value="id",required = false) String id){
         Orders o = ordersService.selectOrdersById(id);
         o.setState(0);
@@ -182,7 +108,7 @@ public class OrdersController {
     }
 
     /*去付款修改state为2**/
-    @PutMapping("/payorders")
+    @GetMapping("/payorders")
     public Map<String, String> payorders(@RequestParam(value="id",required = false) String id){
         Orders o = ordersService.selectOrdersById(id);
         o.setState(2);
@@ -195,7 +121,7 @@ public class OrdersController {
 
     /*管理员去发货修改state为3**/
     /*前端传一个order对象**/
-    @PutMapping("/fahuo")
+    @GetMapping("/fahuo")
     public Map<String, String> fahuo(@RequestParam(value="id",required = false) String id){
         Orders o = ordersService.selectOrdersById(id);
         o.setState(3);
@@ -208,7 +134,7 @@ public class OrdersController {
     }
 
     /*确认收货 修改state为4**/
-    @PutMapping("/shouhuo")
+    @GetMapping("/shouhuo")
     public Map<String, String> shouhuo(@RequestParam(value="id",required = false) String id){
         Orders o = ordersService.selectOrdersById(id);
         o.setState(4);
@@ -220,32 +146,5 @@ public class OrdersController {
     }
 
 
-    /*查询历史订单state为0或者4的**/
-    @GetMapping("/my")
-    public List<Orders> my(String openid){
-        //存放取消订单和已完成订单的list
-        List<Orders> list1 = new ArrayList<Orders>();
-        List<Orders> list =ordersService.selectByOpenid(openid);
-        for(int i=0;i<list.size();i++){
-            if(list.get(i).getState()==0||list.get(i).getState()==4) {
-                list1.add(list.get(i));
-            }
-        }
-        return list1;
-    }
-
-    /*返回全部订单商品详情**/
-    @PostMapping("listproduct4")
-    List<Product> listprouct4(@RequestBody(required=false) Orders orders){
-        //存放我的订单的产品信息
-        List<Product> p4 = new ArrayList<Product>();
-        List<Orders> list =ordersService.selectByOpenid(orders.getOpenid());
-        for(int i=0;i<list.size();i++) {
-            if (list.get(i).getState() == 0||list.get(i).getState() == 4) {
-                p4.add(productMapper.selectByPrimaryKey(orders.getProductid()));
-            }
-        }
-        return p4;
-    }
 
 }
