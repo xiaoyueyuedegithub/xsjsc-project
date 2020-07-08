@@ -31,6 +31,34 @@ public class ProductController {
 	private GoodsTypeService typeservice;
 	@Autowired
 	private ProductService service;
+
+	/**
+	 * 增加商品
+	 * @param p
+	 * @return
+	 */
+	@PostMapping("/addproduct")
+	public String addproduct(Product p,@RequestParam("file")MultipartFile file,Model model){
+		//1、判断是否有文件存储，如果有，则将文件保存到fastdfs中
+		if(file!=null && !file.isEmpty()){
+			//创建fastdfsclient的实例
+			try {
+				FastDFSClient dfs = new FastDFSClient();
+				//获取上传文件的后缀名
+				String filename = file.getOriginalFilename(); //文件名
+				String extName = filename.substring(filename.lastIndexOf(".")+1);
+				String url = dfs.uploadFile(file.getBytes(), extName);//将文件保存到fastdfs中。
+				//将路径保存到数据库中
+				p.setFields2(url);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		p.setId(UUID.randomUUID().toString());
+		service.insertProduct(p);
+		return "redirect:/product/toadd";
+	}
+
 	/**
 	 * 进入到增加页面
 	 * @return
