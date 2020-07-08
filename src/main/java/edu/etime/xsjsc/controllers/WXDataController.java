@@ -96,5 +96,45 @@ public class WXDataController {
 		return service.insertCusAddress(address);
 	}
 
+	
+	
+	/**
+	 * 查询分类列表
+	 * @return
+	 */
+	@GetMapping("/GoodsTypeList")
+	@ResponseBody
+	public List<GoodsType> selectGoodsTypeList(){
+		return service.selectGoodsTypeList(new GoodsType());
+	}
 
+	/**
+	 * 新增分类
+	 * @return
+	 */
+	@PostMapping("/insertGoodsType")
+	@ResponseBody
+	public int insertGoodsType(@RequestBody GoodsType gt){
+		return service.insertGoodsType(gt);
+	}
+
+	/**
+	 * 按id查询分类
+	 * @return
+	 */
+	@GetMapping("/GoodsTypeInfo/{GoodsTypeId}")
+	@ResponseBody
+	public GoodsType selectGoodsTypeById(@PathVariable("GoodsTypeId") String goodstypeId){
+		return service.selectGoodsTypeById(goodstypeId);
+	}
+
+	/**
+	 * 修改分类
+	 * @return
+	 */
+	@PutMapping("/updateGoodsType")
+	@ResponseBody
+	public int updateGoodsType(@RequestBody GoodsType gt){
+		return service.updateGoodsType(gt);
+	}
 }
