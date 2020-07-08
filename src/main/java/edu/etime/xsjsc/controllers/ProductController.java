@@ -34,13 +34,9 @@ public class ProductController {
 	@Autowired
 	private ProductService service;
 
-	/**
-	 * 增加商品-lmy
-	 * @param p
-	 * @return
-	 */
 	@PostMapping("/addproduct")
 	public String addproduct(Product p,@RequestParam("file")MultipartFile file){
+
 		//1、判断是否有文件存储，如果有，则将文件保存到fastdfs中
 		if(file!=null && !file.isEmpty()){
 			//创建fastdfsclient的实例
@@ -61,11 +57,6 @@ public class ProductController {
 		 service.insertProduct(p);
 		return "redirect:/product/toadd";
 	}
-
-
-
-
-
 
 	/**
 	 * 进入到增加页面
