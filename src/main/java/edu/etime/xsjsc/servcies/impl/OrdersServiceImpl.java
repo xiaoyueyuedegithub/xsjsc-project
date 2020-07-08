@@ -32,6 +32,7 @@ public class OrdersServiceImpl implements OrdersService {
             for(Orders orders1:list){
                 if (orders1.getState()==1){
                     OrderProduct orderProduct = new OrderProduct();
+                    orderProduct.setId(orders1.getId());
                     orderProduct.setNumber(orders1.getNumber());
                     orderProduct.setAddress(orders1.getAddress());
                     Product product = productMapper.selectByPrimaryKey(orders1.getProductid());
@@ -44,6 +45,7 @@ public class OrdersServiceImpl implements OrdersService {
             for(Orders orders1:list){
                 if (orders1.getState()==1){
                     OrderProduct orderProduct = new OrderProduct();
+                    orderProduct.setId(orders1.getId());
                     orderProduct.setNumber(orders1.getNumber());
                     orderProduct.setAddress(orders1.getAddress());
                     Product product = productMapper.selectByPrimaryKey(orders1.getProductid());
@@ -64,6 +66,7 @@ public class OrdersServiceImpl implements OrdersService {
             for(Orders orders1:list){
                 if (orders1.getState()==2){
                     OrderProduct orderProduct = new OrderProduct();
+                    orderProduct.setId(orders1.getId());
                     orderProduct.setNumber(orders1.getNumber());
                     orderProduct.setAddress(orders1.getAddress());
                     Product product = productMapper.selectByPrimaryKey(orders1.getProductid());
@@ -76,6 +79,7 @@ public class OrdersServiceImpl implements OrdersService {
             for(Orders orders1:list){
                 if (orders1.getState()==2){
                     OrderProduct orderProduct = new OrderProduct();
+                    orderProduct.setId(orders1.getId());
                     orderProduct.setNumber(orders1.getNumber());
                     orderProduct.setAddress(orders1.getAddress());
                     Product product = productMapper.selectByPrimaryKey(orders1.getProductid());
@@ -96,6 +100,7 @@ public class OrdersServiceImpl implements OrdersService {
             for(Orders orders1:list){
                 if (orders1.getState()==3){
                     OrderProduct orderProduct = new OrderProduct();
+                    orderProduct.setId(orders1.getId());
                     orderProduct.setNumber(orders1.getNumber());
                     orderProduct.setAddress(orders1.getAddress());
                     orderProduct.setInvoice(orders1.getInvoice());
@@ -109,6 +114,7 @@ public class OrdersServiceImpl implements OrdersService {
             for(Orders orders1:list){
                 if (orders1.getState()==1){
                     OrderProduct orderProduct = new OrderProduct();
+                    orderProduct.setId(orders1.getId());
                     orderProduct.setNumber(orders1.getNumber());
                     orderProduct.setAddress(orders1.getAddress());
                     orderProduct.setInvoice(orders1.getInvoice());
@@ -130,9 +136,11 @@ public class OrdersServiceImpl implements OrdersService {
             for(Orders orders1:list){
                 if (orders1.getState()==0||orders1.getState()==4){
                     OrderProduct orderProduct = new OrderProduct();
+                    orderProduct.setId(orders1.getId());
                     orderProduct.setNumber(orders1.getNumber());
                     orderProduct.setAddress(orders1.getAddress());
                     orderProduct.setInvoice(orders1.getInvoice());
+                    orderProduct.setState(orders1.getState());
                     Product product = productMapper.selectByPrimaryKey(orders1.getProductid());
                     orderProduct.setProduct(product);
                     list4.add(orderProduct);
@@ -143,9 +151,11 @@ public class OrdersServiceImpl implements OrdersService {
             for(Orders orders1:list){
                 if (orders1.getState()==0||orders1.getState()==4){
                     OrderProduct orderProduct = new OrderProduct();
+                    orderProduct.setId(orders1.getId());
                     orderProduct.setNumber(orders1.getNumber());
                     orderProduct.setAddress(orders1.getAddress());
                     orderProduct.setInvoice(orders1.getInvoice());
+                    orderProduct.setState(orders1.getState());
                     Product product = productMapper.selectByPrimaryKey(orders1.getProductid());
                     orderProduct.setProduct(product);
                     list4.add(orderProduct);
