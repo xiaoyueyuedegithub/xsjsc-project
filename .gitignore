@@ -1,0 +1,27 @@
+*.class
+
+#project
+.project
+.classpath
+.settings/
+.metadata
+.versionsBackup
+*.iml
+.idea/
+
+# svn
+.svn/
+
+# web
+classes/
+
+# maven
+target/
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
