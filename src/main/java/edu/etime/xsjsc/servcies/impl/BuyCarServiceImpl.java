@@ -7,10 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BuyCarImpl implements BuyCarService {
+public class BuyCarServiceImpl implements BuyCarService {
 
     @Autowired
     BuycarMapper buycarMapper;
+
+    @Override
+    public int insert(Buycar record) {
+        return buycarMapper.insert(record);
+    }
 
     @Override
     public int deleteByPrimaryKey(String id) {
@@ -18,27 +23,15 @@ public class BuyCarImpl implements BuyCarService {
     }
 
     @Override
-    public int insert(Buycar record) {
-        return 0;
-    }
-
-    @Override
-    public int insertSelective(Buycar record) {
-        return 0;
-    }
-
-    @Override
     public Buycar selectByPrimaryKey(String id) {
-        return null;
-    }
-
-    @Override
-    public int updateByPrimaryKeySelective(Buycar record) {
-        return 0;
+        return buycarMapper.selectByPrimaryKey(id);
     }
 
     @Override
     public int updateByPrimaryKey(Buycar record) {
-        return 0;
+        return buycarMapper.updateByPrimaryKey(record);
     }
+
+    @Override
+    public int payForGoods(String id) { return buycarMapper.payForGoods(id); }
 }

@@ -7,16 +7,14 @@ import edu.etime.xsjsc.pojo.Buycar;
 
 public interface BuyCarService {
 
-    int deleteByPrimaryKey(String id);
-
     int insert(Buycar record);
 
-    int insertSelective(Buycar record);
+    int deleteByPrimaryKey(String id);
 
     Buycar selectByPrimaryKey(String id);
 
-    int updateByPrimaryKeySelective(Buycar record);
-
     int updateByPrimaryKey(Buycar record);
+
+    int payForGoods(String id);
 
 }
