@@ -102,5 +102,25 @@ public class WXDataServiceImpl implements WXDataService {
 		//3、新增收货地址
 		return addrmapper.insert(address);
 	}
+	
+	
+	@Override
+	public int insertGoodsType(GoodsType type) {
+		return gtmapper.insert(type);
+	}
+
+	@Override
+	public List<GoodsType> selectGoodsTypeList(GoodsType type) {
+		return gtmapper.selectGoodsTypeList(type);
+	}
+
+	@Override
+	public GoodsType selectGoodsTypeById(String id) { return gtmapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public int updateGoodsType(GoodsType type) {
+		return gtmapper.updateByPrimaryKeySelective(type);
+	}
 
 }
