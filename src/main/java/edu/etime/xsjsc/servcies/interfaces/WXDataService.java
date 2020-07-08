@@ -7,6 +7,7 @@ import edu.etime.xsjsc.dto.ProductDetailDto;
 import edu.etime.xsjsc.pojo.CusAddress;
 import edu.etime.xsjsc.pojo.Customer;
 import edu.etime.xsjsc.pojo.Product;
+import edu.etime.xsjsc.pojo.GoodsType;
 
 /**
  * 微信数据接口服务层
