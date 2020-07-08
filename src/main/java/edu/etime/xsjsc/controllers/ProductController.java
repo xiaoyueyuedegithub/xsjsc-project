@@ -1,8 +1,10 @@
 package edu.etime.xsjsc.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import edu.etime.xsjsc.dto.GoodsTypeProduct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +33,31 @@ public class ProductController {
 	private GoodsTypeService typeservice;
 	@Autowired
 	private ProductService service;
+
+	@PostMapping("/addproduct")
+	public String addproduct(Product p,@RequestParam("file")MultipartFile file){
+
+		//1、判断是否有文件存储，如果有，则将文件保存到fastdfs中
+		if(file!=null && !file.isEmpty()){
+			//创建fastdfsclient的实例
+			try {
+				FastDFSClient dfs = new FastDFSClient();
+				//获取上传文件的后缀名
+				String filename = file.getOriginalFilename(); //文件名
+				String extName = filename.substring(filename.lastIndexOf(".")+1);
+				String url = dfs.uploadFile(file.getBytes(), extName);//将文件保存到fastdfs中。
+				//将路径保存到数据库中
+				p.setFields2(url);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		p.setId(UUID.randomUUID().toString());
+		//处理typeid
+		 service.insertProduct(p);
+		return "redirect:/product/toadd";
+	}
+
 	/**
 	 * 进入到增加页面
 	 * @return

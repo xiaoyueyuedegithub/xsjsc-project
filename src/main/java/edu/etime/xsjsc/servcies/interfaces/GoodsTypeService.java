@@ -35,4 +35,6 @@ public interface GoodsTypeService {
 	 * @return
 	 */
 	int updateGoodsType(GoodsType type);
+
+	List<GoodsType> selectGoodsTypeList1();
 }
