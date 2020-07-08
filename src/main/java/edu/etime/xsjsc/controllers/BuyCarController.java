@@ -84,7 +84,6 @@ public class BuyCarController {
         Orders orders = null;
         buyCarService.payForGoods(id);
 
-        ordersService.insertOrders(orders);
         Map<String,String> map = new HashMap<>();
         map.put("status","200");
         map.put("massage","pay buycar succeed");
