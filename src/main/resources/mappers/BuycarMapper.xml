@@ -5,47 +5,35 @@
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="productid" property="productid" jdbcType="VARCHAR" />
     <result column="openid" property="openid" jdbcType="VARCHAR" />
-    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="num" property="num" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, productid, openid, number
+    id, productid, openid, num
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectBuycarList" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from buycar
-    where id = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from buycar
     where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="edu.etime.xsjsc.pojo.Buycar" >
-    insert into buycar (id, productid, openid, number
+    insert into buycar (id, productid, openid, num
       )
-    values (#{id,jdbcType=VARCHAR}, #{productid,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, #{number,jdbcType=INTEGER}
+    values (#{id,jdbcType=VARCHAR}, #{productid,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, #{num,jdbcType=INTEGER}
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="edu.etime.xsjsc.pojo.Buycar" >
     update buycar
-    set productid = #{productid,jdbcType=VARCHAR},
-      openid = #{openid,jdbcType=VARCHAR}
+    set
+      num = #{num,jdbcType=INTEGER}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 
-  <!-- 把购物车的数据从数据库中删除掉，再把这条数据插入待付款/待发货的数据库 -->
   <delete id="payForGoods" parameterType="edu.etime.xsjsc.pojo.Buycar" >
     delete from buycar
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-<!--  <insert id="payForGoods" parameterType="edu.etime.xsjsc.pojo.Buycar" >-->
-<!--    insert into orders (id, openid, productid,productname, title, price, number, totle, ispay,-->
-<!--        invoice, receive, state, address, addrid-->
-<!--      )-->
-<!--    values (#{id,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, #{productid,jdbcType=VARCHAR},  #{productname,jdbcType=VARCHAR},-->
-<!--         #{title,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, #{number,jdbcType=INT}, #{totle,jdbcType=DOUBLE},-->
-<!--          #{ispay,jdbcType=INT}, #{invoice,jdbcType=VARCHAR}, #{receive,jdbcType=INT}, #{state,jdbcType=INT},-->
-<!--           #{address,jdbcType=VARCHAR}, #{addrid,jdbcType=VARCHAR}-->
-<!--      )-->
-<!--  </insert>-->
 </mapper>

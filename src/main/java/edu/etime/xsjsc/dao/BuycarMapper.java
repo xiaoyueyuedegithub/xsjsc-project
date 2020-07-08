@@ -2,13 +2,15 @@ package edu.etime.xsjsc.dao;
 
 import edu.etime.xsjsc.pojo.Buycar;
 
+import java.util.List;
+
 public interface BuycarMapper {
     /**
      * 添加购物车接口
      * @param record
      * @return
      */
-    int insert(Buycar record);
+    int insert(Buycar buycar);
 
     /**
      * 删除购物车接口
@@ -22,14 +24,14 @@ public interface BuycarMapper {
      * @param id
      * @return
      */
-    Buycar selectByPrimaryKey(String id);
+    List<Buycar> selectBuycarList();
 
     /**
      * 修改购物车商品数量
-     * @param record
+     * @param buycar
      * @return
      */
-    int updateByPrimaryKey(Buycar record);
+    int updateByPrimaryKey(Buycar buycar);
 
     /**
      * 支付

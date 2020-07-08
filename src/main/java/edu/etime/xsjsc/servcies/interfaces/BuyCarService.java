@@ -4,16 +4,19 @@ package edu.etime.xsjsc.servcies.interfaces;
 /**订单管理接口**/
 
 import edu.etime.xsjsc.pojo.Buycar;
+import edu.etime.xsjsc.pojo.Orders;
+
+import java.util.List;
 
 public interface BuyCarService {
 
-    int insert(Buycar record);
+    int insert(Buycar buycar);
 
     int deleteByPrimaryKey(String id);
 
-    Buycar selectByPrimaryKey(String id);
+    List<Buycar> selectBuycarList();
 
-    int updateByPrimaryKey(Buycar record);
+    int updateBuyCar(Buycar buycar);
 
     int payForGoods(String id);
 
