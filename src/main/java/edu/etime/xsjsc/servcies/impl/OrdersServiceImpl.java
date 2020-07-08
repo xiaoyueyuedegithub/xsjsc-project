@@ -25,17 +25,16 @@ public class OrdersServiceImpl implements OrdersService {
 
    //返回待付款订单
     @Override
-    public List<OrderProduct> selectOrders1(Orders orders) {
+    public List<OrderProduct> selectToPayOrders(String openid) {
         List<OrderProduct> list1 = new ArrayList<>();
-        if(orders.getOpenid()!=null){
-            List<Orders> list = ordersMapper.selectByopenid(orders.getOpenid());
+        if(openid!=null){
+            List<Orders> list = ordersMapper.selectByopenid(openid);
             for(Orders orders1:list){
                 if (orders1.getState()==1){
                     OrderProduct orderProduct = new OrderProduct();
-                    orderProduct.setNumber(orders.getNumber());
-                    orderProduct.setAddress(orders.getAddress());
-                    orderProduct.setInvoice(orders.getInvoice());
-                    Product product = productMapper.selectByPrimaryKey(orders.getProductid());
+                    orderProduct.setNumber(orders1.getNumber());
+                    orderProduct.setAddress(orders1.getAddress());
+                    Product product = productMapper.selectByPrimaryKey(orders1.getProductid());
                     orderProduct.setProduct(product);
                     list1.add(orderProduct);
                 }
@@ -45,10 +44,9 @@ public class OrdersServiceImpl implements OrdersService {
             for(Orders orders1:list){
                 if (orders1.getState()==1){
                     OrderProduct orderProduct = new OrderProduct();
-                    orderProduct.setNumber(orders.getNumber());
-                    orderProduct.setAddress(orders.getAddress());
-                    orderProduct.setInvoice(orders.getInvoice());
-                    Product product = productMapper.selectByPrimaryKey(orders.getProductid());
+                    orderProduct.setNumber(orders1.getNumber());
+                    orderProduct.setAddress(orders1.getAddress());
+                    Product product = productMapper.selectByPrimaryKey(orders1.getProductid());
                     orderProduct.setProduct(product);
                     list1.add(orderProduct);
                 }
@@ -59,17 +57,16 @@ public class OrdersServiceImpl implements OrdersService {
 
     //列出待发货
     @Override
-    public List<OrderProduct> selectOrders2(Orders orders) {
+    public List<OrderProduct> selectToSendOrders(String openid) {
         List<OrderProduct> list2 = new ArrayList<>();
-        if(orders.getOpenid()!=null){
-            List<Orders> list = ordersMapper.selectByopenid(orders.getOpenid());
+        if(openid!=null){
+            List<Orders> list = ordersMapper.selectByopenid(openid);
             for(Orders orders1:list){
                 if (orders1.getState()==2){
                     OrderProduct orderProduct = new OrderProduct();
-                    orderProduct.setNumber(orders.getNumber());
-                    orderProduct.setAddress(orders.getAddress());
-                    orderProduct.setInvoice(orders.getInvoice());
-                    Product product = productMapper.selectByPrimaryKey(orders.getProductid());
+                    orderProduct.setNumber(orders1.getNumber());
+                    orderProduct.setAddress(orders1.getAddress());
+                    Product product = productMapper.selectByPrimaryKey(orders1.getProductid());
                     orderProduct.setProduct(product);
                     list2.add(orderProduct);
                 }
@@ -79,10 +76,9 @@ public class OrdersServiceImpl implements OrdersService {
             for(Orders orders1:list){
                 if (orders1.getState()==2){
                     OrderProduct orderProduct = new OrderProduct();
-                    orderProduct.setNumber(orders.getNumber());
-                    orderProduct.setAddress(orders.getAddress());
-                    orderProduct.setInvoice(orders.getInvoice());
-                    Product product = productMapper.selectByPrimaryKey(orders.getProductid());
+                    orderProduct.setNumber(orders1.getNumber());
+                    orderProduct.setAddress(orders1.getAddress());
+                    Product product = productMapper.selectByPrimaryKey(orders1.getProductid());
                     orderProduct.setProduct(product);
                     list2.add(orderProduct);
                 }
@@ -93,17 +89,17 @@ public class OrdersServiceImpl implements OrdersService {
 
     //列出待收货
     @Override
-    public List<OrderProduct> selectOrders3(Orders orders) {
+    public List<OrderProduct> selectToReceiveOrders(String openid) {
         List<OrderProduct> list3 = new ArrayList<>();
-        if(orders.getOpenid()!=null){
-            List<Orders> list = ordersMapper.selectByopenid(orders.getOpenid());
+        if(openid!=null){
+            List<Orders> list = ordersMapper.selectByopenid(openid);
             for(Orders orders1:list){
                 if (orders1.getState()==3){
                     OrderProduct orderProduct = new OrderProduct();
-                    orderProduct.setNumber(orders.getNumber());
-                    orderProduct.setAddress(orders.getAddress());
-                    orderProduct.setInvoice(orders.getInvoice());
-                    Product product = productMapper.selectByPrimaryKey(orders.getProductid());
+                    orderProduct.setNumber(orders1.getNumber());
+                    orderProduct.setAddress(orders1.getAddress());
+                    orderProduct.setInvoice(orders1.getInvoice());
+                    Product product = productMapper.selectByPrimaryKey(orders1.getProductid());
                     orderProduct.setProduct(product);
                     list3.add(orderProduct);
                 }
@@ -113,10 +109,10 @@ public class OrdersServiceImpl implements OrdersService {
             for(Orders orders1:list){
                 if (orders1.getState()==1){
                     OrderProduct orderProduct = new OrderProduct();
-                    orderProduct.setNumber(orders.getNumber());
-                    orderProduct.setAddress(orders.getAddress());
-                    orderProduct.setInvoice(orders.getInvoice());
-                    Product product = productMapper.selectByPrimaryKey(orders.getProductid());
+                    orderProduct.setNumber(orders1.getNumber());
+                    orderProduct.setAddress(orders1.getAddress());
+                    orderProduct.setInvoice(orders1.getInvoice());
+                    Product product = productMapper.selectByPrimaryKey(orders1.getProductid());
                     orderProduct.setProduct(product);
                     list3.add(orderProduct);
                 }
@@ -127,17 +123,17 @@ public class OrdersServiceImpl implements OrdersService {
 
     //列出历史订单
     @Override
-    public List<OrderProduct> selectOrders4(Orders orders) {
+    public List<OrderProduct> selectHistoryOrders(String openid) {
         List<OrderProduct> list4 = new ArrayList<>();
-        if(orders.getOpenid()!=null){
-            List<Orders> list = ordersMapper.selectByopenid(orders.getOpenid());
+        if(openid!=null){
+            List<Orders> list = ordersMapper.selectByopenid(openid);
             for(Orders orders1:list){
                 if (orders1.getState()==0||orders1.getState()==4){
                     OrderProduct orderProduct = new OrderProduct();
-                    orderProduct.setNumber(orders.getNumber());
-                    orderProduct.setAddress(orders.getAddress());
-                    orderProduct.setInvoice(orders.getInvoice());
-                    Product product = productMapper.selectByPrimaryKey(orders.getProductid());
+                    orderProduct.setNumber(orders1.getNumber());
+                    orderProduct.setAddress(orders1.getAddress());
+                    orderProduct.setInvoice(orders1.getInvoice());
+                    Product product = productMapper.selectByPrimaryKey(orders1.getProductid());
                     orderProduct.setProduct(product);
                     list4.add(orderProduct);
                 }
@@ -147,10 +143,10 @@ public class OrdersServiceImpl implements OrdersService {
             for(Orders orders1:list){
                 if (orders1.getState()==0||orders1.getState()==4){
                     OrderProduct orderProduct = new OrderProduct();
-                    orderProduct.setNumber(orders.getNumber());
-                    orderProduct.setAddress(orders.getAddress());
-                    orderProduct.setInvoice(orders.getInvoice());
-                    Product product = productMapper.selectByPrimaryKey(orders.getProductid());
+                    orderProduct.setNumber(orders1.getNumber());
+                    orderProduct.setAddress(orders1.getAddress());
+                    orderProduct.setInvoice(orders1.getInvoice());
+                    Product product = productMapper.selectByPrimaryKey(orders1.getProductid());
                     orderProduct.setProduct(product);
                     list4.add(orderProduct);
                 }

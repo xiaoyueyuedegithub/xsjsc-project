@@ -35,7 +35,7 @@ public class ProductController {
 	 * 进入到增加页面
 	 * @return
 	 */
-	@PostMapping("/toadd")
+	@GetMapping("/toadd")
 	public String toadd(Model model){
 		//查询出所有可用的商品类型列表
 		GoodsType type = new GoodsType();

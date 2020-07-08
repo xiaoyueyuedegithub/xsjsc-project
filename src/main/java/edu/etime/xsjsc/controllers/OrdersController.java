@@ -1,7 +1,5 @@
 package edu.etime.xsjsc.controllers;
 
-
-
 import edu.etime.xsjsc.dao.ProductMapper;
 import edu.etime.xsjsc.dto.CollectionProduct;
 import edu.etime.xsjsc.dto.OrderProduct;
@@ -56,27 +54,27 @@ public class OrdersController {
 
 
     //列出待付款订单
-    @PutMapping("/listdaifukuan")
-    public List<OrderProduct> listdaifukuan(@RequestBody(required=false) Orders orders) {
-        return ordersService.selectOrders1(orders);
+    @GetMapping("/listToPay")
+    public List<OrderProduct> listToPay(String openid) {
+        return ordersService.selectToPayOrders(openid);
     }
 
     //列出待发货订单
-    @PutMapping("/listdaifahuo")
-    public List<OrderProduct> listdaifahuo(@RequestBody(required=false) Orders orders) {
-        return ordersService.selectOrders2(orders);
+    @GetMapping("/listToSend")
+    public List<OrderProduct> listToSend(String openid) {
+        return ordersService.selectToSendOrders(openid);
     }
 
     //列出待收货订单
-    @PutMapping("/listdaishouhuo")
-    public List<OrderProduct> listdaishouhuo(@RequestBody(required=false) Orders orders) {
-        return ordersService.selectOrders3(orders);
+    @GetMapping("/listToReceive")
+    public List<OrderProduct> listdaishouhuo(String openid) {
+        return ordersService.selectToReceiveOrders(openid);
     }
 
     //列出历史订单
-    @PutMapping("/listlishi")
-    public List<OrderProduct> listlishi(@RequestBody(required=false) Orders orders) {
-        return ordersService.selectOrders4(orders);
+    @GetMapping("/listHistory")
+    public List<OrderProduct> listlishi(String openid) {
+        return ordersService.selectHistoryOrders(openid);
     }
 
 

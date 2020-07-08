@@ -14,13 +14,13 @@ public interface OrdersService {
 
 
     /*列出待付款产品**/
-    List<OrderProduct> selectOrders1(Orders orders);
+    List<OrderProduct> selectToPayOrders(String openid);
     /*列出待发货产品**/
-    List<OrderProduct> selectOrders2(Orders orders);
+    List<OrderProduct> selectToSendOrders(String openid);
     /*列出待收货产品**/
-    List<OrderProduct> selectOrders3(Orders orders);
+    List<OrderProduct> selectToReceiveOrders(String openid);
     /*列出历史订单产品**/
-    List<OrderProduct> selectOrders4(Orders orders);
+    List<OrderProduct> selectHistoryOrders(String openid);
 
 
     /*根据商品id增加订单**/
