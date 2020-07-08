@@ -126,6 +126,39 @@ public class OrdersServiceImpl implements OrdersService {
         }
         return list3;
     }
+    //列出待退款商品
+    @Override
+    public List<OrderProduct> selectToBackOrders(String openid) {
+        List<OrderProduct> list3 = new ArrayList<>();
+        if(openid!=null){
+            List<Orders> list = ordersMapper.selectByopenid(openid);
+            for(Orders orders1:list){
+                if (orders1.getState()==5){
+                    OrderProduct orderProduct = new OrderProduct();
+                    orderProduct.setId(orders1.getId());
+                    orderProduct.setNumber(orders1.getNumber());
+                    orderProduct.setAddress(orders1.getAddress());
+                    Product product = productMapper.selectByPrimaryKey(orders1.getProductid());
+                    orderProduct.setProduct(product);
+                    list3.add(orderProduct);
+                }
+            }
+        }else {
+            List<Orders> list = ordersMapper.selectOrdersList();
+            for(Orders orders1:list){
+                if (orders1.getState()==5){
+                    OrderProduct orderProduct = new OrderProduct();
+                    orderProduct.setId(orders1.getId());
+                    orderProduct.setNumber(orders1.getNumber());
+                    orderProduct.setAddress(orders1.getAddress());
+                    Product product = productMapper.selectByPrimaryKey(orders1.getProductid());
+                    orderProduct.setProduct(product);
+                    list3.add(orderProduct);
+                }
+            }
+        }
+        return list3;
+    }
 
     //列出历史订单
     @Override
@@ -167,7 +200,12 @@ public class OrdersServiceImpl implements OrdersService {
 
 
     @Override
-    public int insert(Orders orders) {
+    public int insert(Orders orders,Integer state) {
+        orders.setState(state);
+        //增加订单后商品库存减少
+        Product product = productMapper.selectByPrimaryKey(orders.getProductid());
+        product.setStock(product.getStock() - orders.getNumber());
+        productMapper.updateByPrimaryKeySelective(product);
         return ordersMapper.insert(orders);
     }
 
