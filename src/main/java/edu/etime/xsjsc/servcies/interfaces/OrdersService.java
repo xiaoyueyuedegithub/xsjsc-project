@@ -19,12 +19,14 @@ public interface OrdersService {
     List<OrderProduct> selectToSendOrders(String openid);
     /*列出待收货产品**/
     List<OrderProduct> selectToReceiveOrders(String openid);
+    /*列出待退款产品**/
+    List<OrderProduct> selectToBackOrders(String openid);
     /*列出历史订单产品**/
     List<OrderProduct> selectHistoryOrders(String openid);
 
 
     /*根据商品id增加订单**/
-    int insert(Orders orders);
+    int insert(Orders orders,Integer state);
     /**
      * 根据商品id查询一条商品的详细信息
      * @param pid

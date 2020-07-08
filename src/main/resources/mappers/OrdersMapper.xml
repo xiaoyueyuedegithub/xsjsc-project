@@ -62,7 +62,7 @@
     values (#{openid,jdbcType=VARCHAR}, #{productid,jdbcType=VARCHAR},
       #{productname,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE},
       #{number,jdbcType=INTEGER}, #{totle,jdbcType=DOUBLE}, #{ispay,jdbcType=INTEGER},
-      #{invoice,jdbcType=VARCHAR}, #{receive,jdbcType=INTEGER}, 1,
+      #{invoice,jdbcType=VARCHAR}, #{receive,jdbcType=INTEGER}, #{state},
       #{address,jdbcType=VARCHAR}, #{addrid,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="edu.etime.xsjsc.pojo.Orders" >
