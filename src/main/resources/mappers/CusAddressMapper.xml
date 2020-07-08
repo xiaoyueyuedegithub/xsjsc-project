@@ -18,19 +18,19 @@
     from cusaddress
     where id = #{id,jdbcType=VARCHAR}
   </select>
-  <!-- 查询收货地址列表 -->
+  <!-- 根据openid查询收货地址列表 -->
   <select id="selectAddress" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     id, openid, address, isdefault, phone, title
     from cusaddress
     <where>
     	<if test="openid!=null and openid!=''">
-    	 and openid=#{openid}
+    	 openid=#{openid}
     	</if>
     </where>
   </select>
 
-  <!-- 查询订单列表 -->
+  <!-- 查询所有地址列表 -->
   <select id="selectCusAddressList" resultMap="BaseResultMap">
     select
     id, openid, address, isdefault, phone, title
@@ -42,6 +42,7 @@
     delete from cusaddress
     where id = #{id,jdbcType=VARCHAR}
   </delete>
+
   <insert id="insert" parameterType="edu.etime.xsjsc.pojo.CusAddress" >
     insert into cusaddress (id, openid, address, 
       isdefault, phone, title
@@ -50,6 +51,7 @@
       #{isdefault,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}
       )
   </insert>
+
   <insert id="insertSelective" parameterType="edu.etime.xsjsc.pojo.CusAddress" >
     insert into cusaddress
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -93,6 +95,7 @@
       </if>
     </trim>
   </insert>
+
   <update id="updateByPrimaryKeySelective" parameterType="edu.etime.xsjsc.pojo.CusAddress" >
     update cusaddress
     <set >
@@ -114,6 +117,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
+
   <update id="updateByPrimaryKey" parameterType="edu.etime.xsjsc.pojo.CusAddress" >
     update cusaddress
     set openid = #{openid,jdbcType=VARCHAR},

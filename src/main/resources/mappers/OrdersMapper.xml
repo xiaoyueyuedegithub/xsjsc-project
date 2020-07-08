@@ -42,7 +42,7 @@
   </select>
 
 <!--  根据用户id查询订单-->
-  <select id="selectByOpenid" resultMap="BaseResultMap" parameterType="java.lang.String">
+  <select id="selectByopenid" resultMap="BaseResultMap" parameterType="java.lang.String">
     select
     <include refid="Base_Column_List" />
     from orders
@@ -54,15 +54,15 @@
     where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="edu.etime.xsjsc.pojo.Orders" >
-    insert into orders (id, openid, productid, 
+    insert into orders (openid, productid,
       productname, title, price, 
       number, totle, ispay, 
-      invoice, receive, state, 
+      invoice, receive, state,
       address, addrid)
-    values (#{id,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, #{productid,jdbcType=VARCHAR}, 
-      #{productname,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, 
-      #{number,jdbcType=INTEGER}, #{totle,jdbcType=DOUBLE}, #{ispay,jdbcType=INTEGER}, 
-      #{invoice,jdbcType=VARCHAR}, #{receive,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, 
+    values (#{openid,jdbcType=VARCHAR}, #{productid,jdbcType=VARCHAR},
+      #{productname,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE},
+      #{number,jdbcType=INTEGER}, #{totle,jdbcType=DOUBLE}, #{ispay,jdbcType=INTEGER},
+      #{invoice,jdbcType=VARCHAR}, #{receive,jdbcType=INTEGER}, #{state},
       #{address,jdbcType=VARCHAR}, #{addrid,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="edu.etime.xsjsc.pojo.Orders" >

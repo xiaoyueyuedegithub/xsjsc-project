@@ -5,11 +5,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import edu.etime.xsjsc.dto.GoodsTypeProduct;
 import edu.etime.xsjsc.dto.ProductDetailDto;
@@ -22,7 +18,7 @@ import edu.etime.xsjsc.servcies.interfaces.WXDataService;
  * @author 张旺
  *
  */
-@Controller
+@RestController
 @RequestMapping("/wx")
 public class WXDataController {
 
@@ -37,7 +33,8 @@ public class WXDataController {
 	 * @param cmd
 	 * @return
 	 */
-	@RequestMapping("/index/{cmd}")
+
+	@GetMapping("/index/{cmd}")
 	@ResponseBody
 	public List<Product> selectIndexProduct(@PathVariable("cmd")String cmd){
 		Product p = new Product();
@@ -57,18 +54,18 @@ public class WXDataController {
 	 * 查询分类商品列表
 	 * @return
 	 */
-	@RequestMapping("/product")
+	@GetMapping("/product")
 	@ResponseBody
 	public List<GoodsTypeProduct> selectGoodsTypeProduct(){
 		return service.selectGoodsTypeProduct();
 	}
-	
+
 	/**
 	 * 查询商品的详情
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping("/detail/{id}")
+	@GetMapping("/detail/{id}")
 	@ResponseBody
 	public ProductDetailDto selectProductDetails(@PathVariable("id")String id){		
 		return service.selectProductDetails(id);
@@ -78,7 +75,7 @@ public class WXDataController {
 	 * @param openid
 	 * @return
 	 */
-	@RequestMapping("/getaddr/{openid}")
+	@GetMapping("/getaddr/{openid}")
 	@ResponseBody
 	public List<CusAddress> selectCusAddress(@PathVariable("openid")String openid){
 		CusAddress addr = new CusAddress();
@@ -90,7 +87,7 @@ public class WXDataController {
 	 * @param address
 	 * @return
 	 */
-	@RequestMapping(value="/address/add",method=RequestMethod.POST)
+	@PostMapping(value="/address/add")
 	@ResponseBody
 	public int insertCusAddress(@RequestBody CusAddress address){
 		address.setId(UUID.randomUUID().toString());

@@ -5,11 +5,21 @@ import java.util.Date;
 public class Collection {
     private String id;
 
+    @Override
+    public String toString() {
+        return "Collection{" +
+                "id='" + id + '\'' +
+                ", productid='" + productid + '\'' +
+                ", openid='" + openid + '\'' +
+                ", collecttime='" + collecttime + '\'' +
+                '}';
+    }
+
     private String productid;
 
     private String openid;
 
-    private Date collecttime;
+    private String collecttime;
 
     public String getId() {
         return id;
@@ -35,11 +45,11 @@ public class Collection {
         this.openid = openid == null ? null : openid.trim();
     }
 
-    public Date getCollecttime() {
+    public String getCollecttime() {
         return collecttime;
     }
 
-    public void setCollecttime(Date collecttime) {
+    public void setCollecttime(String collecttime) {
         this.collecttime = collecttime;
     }
 }

@@ -40,4 +40,9 @@ public class GoodsTypeServiceImpl implements GoodsTypeService {
 		return mapper.updateByPrimaryKeySelective(type);
 	}
 
+	@Override
+	public List<GoodsType> selectGoodsTypeList1() {
+		return mapper.selectGoodsTypeList1();
+	}
+
 }

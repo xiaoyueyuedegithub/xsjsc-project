@@ -6,7 +6,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.JstlView;
 
@@ -19,7 +19,7 @@ import edu.etime.xsjsc.servcies.interfaces.GoodsTypeService;
  * @author zhangwang
  *
  */
-@Controller
+@RestController
 @RequestMapping("/goodstype/")
 public class GoodsTypeController {
 
@@ -31,7 +31,7 @@ public class GoodsTypeController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/toadd")
+	@GetMapping("/toadd")
 	public String toadd() {
 		return "goodstype/add";
 	}
@@ -41,7 +41,7 @@ public class GoodsTypeController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/add")
+	@PostMapping("/add")
 	public String insertGoodsType(GoodsType type, Model model) {
 		type.setId(UUID.randomUUID().toString());
 		// 调用service层方法，保存商品类型
@@ -61,7 +61,7 @@ public class GoodsTypeController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/list")
+	@GetMapping("/list")
 	public String list(Model model) {
 		// 查询
 		List<GoodsType> list = service.selectGoodsTypeList(new GoodsType());
@@ -78,7 +78,7 @@ public class GoodsTypeController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/toedit")
+	@PutMapping("/toedit")
 	public String toedit(String id, Model model) {
 		GoodsType type = service.selectGoodsTypeById(id);
 		model.addAttribute("type", type);
@@ -91,7 +91,7 @@ public class GoodsTypeController {
 	 * @param type
 	 * @return
 	 */
-	@RequestMapping("/edit")
+	@PutMapping("/edit")
 	public String edit(GoodsType type,Model model) {
 		int rtn = service.updateGoodsType(type);
 		// 处理结果

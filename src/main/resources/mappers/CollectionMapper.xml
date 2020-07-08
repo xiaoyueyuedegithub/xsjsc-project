@@ -16,6 +16,20 @@
     from collection
     where id = #{id,jdbcType=VARCHAR}
   </select>
+<!--  通过用户openid查询收藏列表-->
+  <select id="selectByOpenid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from collection
+    where openid = #{id,jdbcType=VARCHAR}
+  </select>
+<!--  通过商品id,openid查询商品收藏信息-->
+  <select id="selectByProductid" resultMap="BaseResultMap" parameterType="edu.etime.xsjsc.pojo.Collection">
+    select
+    <include refid="Base_Column_List"/>
+    from collection
+    where productid = #{productid} and openid=#{openid}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from collection
     where id = #{id,jdbcType=VARCHAR}
