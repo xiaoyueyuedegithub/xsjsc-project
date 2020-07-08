@@ -6,6 +6,7 @@ import edu.etime.xsjsc.dto.GoodsTypeProduct;
 import edu.etime.xsjsc.dto.ProductDetailDto;
 import edu.etime.xsjsc.pojo.CusAddress;
 import edu.etime.xsjsc.pojo.Customer;
+import edu.etime.xsjsc.pojo.GoodsType;
 import edu.etime.xsjsc.pojo.Product;
 
 /**
@@ -59,7 +60,7 @@ public interface WXDataService {
 	 * @return
 	 */
 	int insertCusAddress(CusAddress address);
-	
+
 	/**
 	 * 增加商品类型
 	 * @param type

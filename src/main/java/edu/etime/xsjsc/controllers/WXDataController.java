@@ -100,7 +100,7 @@ public class WXDataController {
 	 * 查询分类列表
 	 * @return
 	 */
-	@RequestMapping("/GoodsTypeList")
+	@GetMapping("/GoodsTypeList")
 	@ResponseBody
 	public List<GoodsType> selectGoodsTypeList(){
 		return service.selectGoodsTypeList(new GoodsType());
@@ -110,7 +110,7 @@ public class WXDataController {
 	 * 新增分类
 	 * @return
 	 */
-	@RequestMapping("/insertGoodsType")
+	@PostMapping("/insertGoodsType")
 	@ResponseBody
 	public int insertGoodsType(@RequestBody GoodsType gt){
 		return service.insertGoodsType(gt);
@@ -120,7 +120,7 @@ public class WXDataController {
 	 * 按id查询分类
 	 * @return
 	 */
-	@RequestMapping("/GoodsTypeInfo{GoodsTypeId}")
+	@GetMapping("/GoodsTypeInfo/{GoodsTypeId}")
 	@ResponseBody
 	public GoodsType selectGoodsTypeById(@PathVariable("GoodsTypeId") String goodstypeId){
 		return service.selectGoodsTypeById(goodstypeId);
@@ -130,7 +130,7 @@ public class WXDataController {
 	 * 修改分类
 	 * @return
 	 */
-	@RequestMapping("/updateGoodsType")
+	@PutMapping("/updateGoodsType")
 	@ResponseBody
 	public int updateGoodsType(@RequestBody GoodsType gt){
 		return service.updateGoodsType(gt);
