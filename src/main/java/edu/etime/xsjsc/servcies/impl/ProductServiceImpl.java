@@ -68,4 +68,9 @@ public class ProductServiceImpl implements ProductService {
 		return imgmapper.deleteByPrimaryKey(id);
 	}
 
+	@Override
+	public List<Product> selectProductList1() {
+		return mapper.selectProductList1();
+	}
+
 }
