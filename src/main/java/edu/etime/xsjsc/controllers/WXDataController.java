@@ -3,6 +3,7 @@ package edu.etime.xsjsc.controllers;
 import java.util.List;
 import java.util.UUID;
 
+import edu.etime.xsjsc.pojo.GoodsType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -93,45 +94,5 @@ public class WXDataController {
 		address.setId(UUID.randomUUID().toString());
 		return service.insertCusAddress(address);
 	}
-	
-	
-	/**
-	 * 查询分类列表
-	 * @return
-	 */
-	@RequestMapping("/GoodsTypeList")
-	@ResponseBody
-	public List<GoodsType> selectGoodsTypeList(){
-		return service.selectGoodsTypeList(new GoodsType());
-	}
 
-	/**
-	 * 新增分类
-	 * @return
-	 */
-	@RequestMapping("/insertGoodsType")
-	@ResponseBody
-	public int insertGoodsType(@RequestBody GoodsType gt){
-		return service.insertGoodsType(gt);
-	}
-
-	/**
-	 * 按id查询分类
-	 * @return
-	 */
-	@RequestMapping("/GoodsTypeInfo{GoodsTypeId}")
-	@ResponseBody
-	public GoodsType selectGoodsTypeById(@PathVariable("GoodsTypeId") String goodstypeId){
-		return service.selectGoodsTypeById(goodstypeId);
-	}
-
-	/**
-	 * 修改分类
-	 * @return
-	 */
-	@RequestMapping("/updateGoodsType")
-	@ResponseBody
-	public int updateGoodsType(@RequestBody GoodsType gt){
-		return service.updateGoodsType(gt);
-	}
 }
