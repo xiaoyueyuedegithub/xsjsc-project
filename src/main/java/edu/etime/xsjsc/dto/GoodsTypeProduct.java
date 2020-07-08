@@ -13,6 +13,7 @@ import edu.etime.xsjsc.pojo.Product;
 public class GoodsTypeProduct extends GoodsType {
 
 	private List<Product> productlist;
+	private Product product;
 
 	public List<Product> getProductlist() {
 		return productlist;
@@ -21,4 +22,6 @@ public class GoodsTypeProduct extends GoodsType {
 	public void setProductlist(List<Product> productlist) {
 		this.productlist = productlist;
 	}
+
+    public void setProduct(Product product){this.product = product;}
 }

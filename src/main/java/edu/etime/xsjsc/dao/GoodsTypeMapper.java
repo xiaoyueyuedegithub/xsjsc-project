@@ -22,4 +22,11 @@ public interface GoodsTypeMapper {
      * @return
      */
     List<GoodsType> selectGoodsTypeList(GoodsType record);
+
+    /**
+     * 无参查询商品类型列表
+     * @return
+     */
+    List<GoodsType> selectGoodsTypeList1();
+
 }

@@ -58,4 +58,6 @@ public interface ProductService {
 	 * @return
 	 */
 	int deleteImg(String id);
+
+	List<Product> selectProductList1();
 }

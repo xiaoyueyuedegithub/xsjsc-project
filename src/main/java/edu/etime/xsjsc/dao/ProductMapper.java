@@ -22,5 +22,6 @@ public interface ProductMapper {
      * @return
      */
     List<Product> selectProductList(Product p);
+    List<Product> selectProductList1();
     
 }
