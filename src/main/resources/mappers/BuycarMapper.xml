@@ -14,17 +14,26 @@
     select 
     <include refid="Base_Column_List" />
     from buycar
+    where openid = #{openid}
   </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from buycar
     where id = #{id,jdbcType=VARCHAR}
   </delete>
+
+  <delete id="deleteByOpenid" parameterType="java.lang.String" >
+    delete from buycar
+    where openid = #{openid,jdbcType=VARCHAR}
+  </delete>
+
   <insert id="insert" parameterType="edu.etime.xsjsc.pojo.Buycar" >
     insert into buycar (id, productid, openid, num
       )
     values (#{id,jdbcType=VARCHAR}, #{productid,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, #{num,jdbcType=INTEGER}
       )
   </insert>
+
   <update id="updateByPrimaryKey" parameterType="edu.etime.xsjsc.pojo.Buycar" >
     update buycar
     set

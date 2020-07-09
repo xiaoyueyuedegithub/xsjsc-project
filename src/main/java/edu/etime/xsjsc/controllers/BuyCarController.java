@@ -1,8 +1,7 @@
 package edu.etime.xsjsc.controllers;
 
-import edu.etime.xsjsc.dao.BuycarMapper;
+import edu.etime.xsjsc.dto.BuyCarProduct;
 import edu.etime.xsjsc.pojo.Buycar;
-import edu.etime.xsjsc.pojo.CusAddress;
 import edu.etime.xsjsc.pojo.Orders;
 import edu.etime.xsjsc.servcies.interfaces.BuyCarService;
 import edu.etime.xsjsc.servcies.interfaces.OrdersService;
@@ -19,7 +18,6 @@ public class BuyCarController {
 
     @Autowired
     BuyCarService buyCarService;
-    OrdersService ordersService;
 
     /**
      * 点击增加购物车
@@ -27,7 +25,7 @@ public class BuyCarController {
      * @return
      */
     @PostMapping("/add")
-    public Map<String, String> add(@RequestBody(required=false) Buycar buycar) {
+    public Map<String, String> add(@RequestBody Buycar buycar) {
         buyCarService.insert(buycar);
         Map<String, String> map = new HashMap<>();
         map.put("status", "200");
@@ -48,15 +46,22 @@ public class BuyCarController {
         map.put("massage","delete buycar succeed");
         return map;
     }
-
+    @DeleteMapping("/deleteAll/{openid}")
+    public Map<String, String> deleteAll(@PathVariable("openid") String openid) {
+        buyCarService.deleteByOpenid(openid);
+        Map<String,String> map = new HashMap<>();
+        map.put("status","200");
+        map.put("massage","delete buycar succeed");
+        return map;
+    }
     /**
      * 查询购物车列表
      * @param
      * @return
      */
-    @GetMapping("/query")
-    public List<Buycar> list(){
-        List<Buycar> list = buyCarService.selectBuycarList();
+    @GetMapping("/query/{openid}")
+    public List<BuyCarProduct> list(@PathVariable("openid") String openid){
+        List<BuyCarProduct> list = buyCarService.selectBuycarList(openid);
         return list;
     }
 
@@ -66,7 +71,7 @@ public class BuyCarController {
      * @return
      */
     @PutMapping("/update")
-    public Map<String, String> update(@RequestBody(required=false)Buycar buycar) {
+    public Map<String, String> update(@RequestBody Buycar buycar) {
         buyCarService.updateBuyCar(buycar);
         Map<String,String> map = new HashMap<>();
         map.put("status","200");
