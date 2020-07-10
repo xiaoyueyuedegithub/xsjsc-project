@@ -73,4 +73,9 @@ public class ProductServiceImpl implements ProductService {
 		return mapper.selectProductList1();
 	}
 
+	@Override
+	public List<Product> search(String keyword) {
+		return mapper.selectByKeyWord(keyword);
+	}
+
 }

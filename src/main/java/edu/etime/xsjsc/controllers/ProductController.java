@@ -193,4 +193,16 @@ public class ProductController {
 		service.deleteImg(id);
 		return "redirect:/product/imgs/"+pid;
 	}
+
+	@GetMapping("/search/{keyword}")
+	@ResponseBody
+	public Object search(@PathVariable("keyword") String keyword) {
+		return service.search(keyword);
+	}
+
+	@GetMapping("/all")
+	@ResponseBody
+	public Object selectAllProduct() {
+		return service.selectProductList(new Product());
+	}
 }

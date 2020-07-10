@@ -60,4 +60,6 @@ public interface ProductService {
 	int deleteImg(String id);
 
 	List<Product> selectProductList1();
+
+	List<Product> search(String keyword);
 }

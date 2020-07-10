@@ -205,6 +205,8 @@ public class OrdersServiceImpl implements OrdersService {
         //增加订单后商品库存减少
         Product product = productMapper.selectByPrimaryKey(orders.getProductid());
         product.setStock(product.getStock() - orders.getNumber());
+        //增加订单后商品销售数量增加
+        product.setNumber(product.getNumber() + orders.getNumber());
         productMapper.updateByPrimaryKeySelective(product);
         return ordersMapper.insert(orders);
     }

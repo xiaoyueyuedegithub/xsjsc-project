@@ -3,6 +3,7 @@ package edu.etime.xsjsc.dao;
 import java.util.List;
 
 import edu.etime.xsjsc.pojo.Product;
+import org.apache.ibatis.annotations.Param;
 
 public interface ProductMapper {
     int deleteByPrimaryKey(String id);
@@ -23,5 +24,11 @@ public interface ProductMapper {
      */
     List<Product> selectProductList(Product p);
     List<Product> selectProductList1();
-    
+
+    /**
+     * 关键词搜索
+     * @param keyword
+     * @return
+     */
+    List<Product> selectByKeyWord(@Param("keyword")String keyword);
 }

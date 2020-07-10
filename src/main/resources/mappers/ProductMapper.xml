@@ -23,11 +23,20 @@
     id, name, price, title, stock, number, description, publishtime, recommend, oldest, 
     hot, fields1, fields2, fields3, typeid, typename
   </sql>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from product
     where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByKeyWord" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+     from product
+    <bind name="keyword1" value="'%' + keyword + '%'" />
+     where name like #{keyword1} or title like #{keyword1}
   </select>
   <!-- 商品列表查询 -->
   <select id="selectProductList" resultMap="BaseResultMap" parameterType="edu.etime.xsjsc.pojo.Product" >

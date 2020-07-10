@@ -109,6 +109,8 @@ public class OrdersController {
         //退款后修改库存
         Product product = productMapper.selectByPrimaryKey(o.getProductid());
         product.setStock(product.getStock() + o.getNumber());
+        //修改销售数量
+        product.setNumber(product.getNumber() + o.getNumber());
         productMapper.updateByPrimaryKeySelective(product);
         ordersService.updateOrders(o);
         Map<String,String> map = new HashMap<>();
